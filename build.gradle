@@ -11,6 +11,7 @@ ext {
 repositories {
   mavenLocal()
   jcenter()
+  mavenCentral()
 }
 
 group = 'se.kry'
@@ -31,6 +32,9 @@ dependencies {
   implementation "io.vertx:vertx-web-client:$vertxVersion"
   compile group: 'org.xerial', name: 'sqlite-jdbc', version: '3.7.2'
   compile "io.vertx:vertx-jdbc-client:$vertxVersion"
+  compile "io.vertx:vertx-web-api-contract:$vertxVersion"
+
+  implementation "org.slf4j:slf4j-jdk14:1.7.28"
 
   testImplementation "io.vertx:vertx-junit5:$vertxVersion"
   testRuntime("org.junit.jupiter:junit-jupiter-engine:$junitJupiterEngineVersion")
@@ -58,6 +62,6 @@ run {
   args = ['run', mainVerticleName, "--redeploy=$watchForChange", "--launcher-class=$mainClassName", "--on-redeploy=$doOnChange"]
 }
 
-task wrapper(type: Wrapper) {
+wrapper {
   gradleVersion = '4.6'
 }
